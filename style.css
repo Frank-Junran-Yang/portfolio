@@ -3,24 +3,100 @@ body {
 	   and use the OS’s UI font as the website font
 	 */
   font: 100%/1.5 system-ui;
+  max-width: 100ch;
+  margin-inline: auto;
+  padding-inline: 16px;  /* limit line length to 100 characters */
+  background-color: #c6f4ed;
 }
 
+:root {
+  --color-accent: oklch(65% 50% 0);          /* pick any color */
+}
+/* the bar */
 nav {
   display: flex;
-  gap: 16px;
-  align-items: center;
-  padding: 12px 16px;
-  border-bottom: 1px solid #eee;
+  align-items: flex-end;                     /* aligns the thick underline with the thin rule */
+  border-bottom: 1px solid oklch(80% 3% 200);
+  padding: 0 16px;                           /* optional left/right padding */
+  height: 48px;                              /* gives the bar some vertical space */
 }
 
+/* links – spread evenly & centered text */
 nav a {
-  display: inline-block;       /* ensures padding applies uniformly */
-  padding: 8px 12px;
+  flex: 1;                                   /* distribute links across the row */
+  text-align: center;
+  display: inline-block;
   text-decoration: none;
-  color: #222;
+  color: inherit;
   font-weight: 600;
+  padding: 0.5em 0.75em;                     /* top/side padding only */
+  /* no border here */
 }
 
-nav a:hover {
-  text-decoration: underline;
+/* hover (optional) */
+nav a:hover { 
+    /* text-decoration: underline;  */
+    border-bottom: 0.4em solid var(--color-accent);
+  padding-bottom: calc(0.5em - 0.4em);
+  /* Optional soft background sampled from the accent hue */
+  background-color: oklch(from var(--color-accent) 95% 5% h);
+}
+
+/* the current page link – thick short underline under the word */
+nav a.current {
+  border-bottom: 0.4em solid oklch(80% 3% 200);
+  padding-bottom: calc(0.5em - 0.4em);       /* keeps total height the same */
+}
+
+form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+}
+
+label {
+  display: contents;
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  grid-column: 1 / -1;
+  background: #eee;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1em; /* optional: adds spacing between items */
+}
+
+article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+}
+
+article h2 {
+  margin: 0;
+}
+
+
+h1 {
+  font-size: 300%;
+}
+
+/* Improve all heading readability and consistency */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+  text-wrap: balance;
 }
