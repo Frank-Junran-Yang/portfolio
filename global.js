@@ -7,4 +7,7 @@ function $$(selector, context = document) {
 let navLinks = $$("nav a");  // This uses the $$ helper we defined earlier
 console.log(navLinks);
 
-currentLink?.classList.add("current");
+if (currentLink) {
+  // or if (currentLink !== undefined)
+  currentLink?.classList.add('current');
+}
