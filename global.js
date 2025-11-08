@@ -113,52 +113,50 @@ select.addEventListener('input', (e) => {
 });
 
 
+// 1) Fetch helper
+export async function fetchJSON(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch projects: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error('Error fetching or parsing JSON data:', err);
+    throw err;
+  }
+}
 
+// 2) Render helper
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+  if (!containerElement) {
+    console.error('renderProjects: container element not found');
+    return;
+  }
+  if (!Array.isArray(projects)) {
+    console.error('renderProjects: projects must be an array');
+    return;
+  }
 
+  containerElement.innerHTML = '';
 
+  for (const project of projects) {
+    const article = document.createElement('article');
+    article.innerHTML = `
+      <${headingLevel}>${project.title ?? 'Untitled Project'}</${headingLevel}>
+      <img src="${project.image ?? 'https://via.placeholder.com/150'}"
+          alt="${project.title ?? ''}" loading="lazy">
+      <div class="project-text">
+        <p>${project.description ?? 'No description available.'}</p>
+        <p class="project-year"><em>c. ${project.year ?? ''}</em></p>
+      </div>
+    `;
+    containerElement.appendChild(article);
+  }
+}
 
-// // ---- DEBUG START
-// console.log("Hostname:", location.hostname, "Pathname:", location.pathname);
-// // ---- DEBUG END
+export async function fetchGitHubData(username) {
+  return fetchJSON(`https://api.github.com/users/${username}`);
+}
 
-// // Step 3: Automatic Navigation Menu
-// let pages = [
-//   { url: "", title: "Home" },
-//   { url: "projects/", title: "Projects" },
-//   { url: "cv.html", title: "CV" },
-//   { url: "contact/", title: "Contact" },
-//   { url: "https://github.com/Frank-Junran-Yang", title: "GitHub" }
-// ];
-
-// const BASE_PATH =
-//   location.hostname === "localhost" || location.hostname === "127.0.0.1"
-//     ? "/"
-//     : "/portfolio/"; // your repo name
-
-// // ---- DEBUG
-// console.log("BASE_PATH:", BASE_PATH);
-// // ----
-
-// let nav = document.createElement("nav");
-// document.body.prepend(nav);
-
-// for (let p of pages) {
-//   let url = p.url;
-//   let title = p.title;
-
-//   if (!url.startsWith("http")) url = BASE_PATH + url;
-
-//   let a = document.createElement("a");
-//   a.href = url;
-//   a.textContent = title;
-
-//   a.classList.toggle(
-//     "current",
-//     a.host === location.host && a.pathname === location.pathname
-//   );
-//   a.toggleAttribute("target", a.host !== location.host);
-
-//   nav.append(a);
-// }
-
-// console.log("Built nav with", nav.querySelectorAll("a").length, "links");

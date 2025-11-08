@@ -131,3 +131,93 @@ label.color-scheme {
   font-size: 0.9rem;
 }
 label.color-scheme select { font: inherit; }
+
+
+
+#profile-stats dl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+  gap: 0.5rem;
+}
+
+#profile-stats dt {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: #aaa;
+  grid-row: 1;
+}
+
+#profile-stats dd {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  grid-row: 2;
+}
+
+
+#projects-plot {
+  display: block;        /* lets margin auto center it if you want */
+  max-width: 20em;       /* keep it a nice size */
+  margin-block: 2em;     /* space above/below */
+  overflow: visible;     /* so future labels/ticks aren’t clipped */
+  /* optional: center it */
+  margin-inline: 0;      /* or use auto to center: margin-inline: auto; */
+}
+
+
+/* --- Legend layout --- */
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 0.5em;
+  margin-top: 1.5em;
+  padding: 0.5em;
+  border: 1px solid var(--outline, #ccc);
+}
+
+/* --- Each legend item --- */
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+/* --- Color swatch box --- */
+.swatch {
+  width: 1em;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.25em;
+  background: var(--color);  /* (same as your background-color line, either is fine) */
+  display: inline-block;
+}
+
+/* --- Container layout for pie + legend side by side --- */
+.container {
+  display: flex;
+  align-items: center; /* vertically center legend with pie */
+  gap: 2em; /* space between pie and legend */
+  flex-wrap: wrap; /* makes it responsive on small screens */
+  justify-content: center; /* center content nicely */
+}
+
+/* Make legend expand to available width if needed */
+.legend {
+  flex: 1;
+  max-width: 300px; /* optional limit */
+}
+
+
+/* Step 5.1 – Highlight hovered wedge */
+/* Hover fade */
+#projects-plot:has(path:hover) path:not(:hover) { opacity: 0.5; }
+
+/* Smooth interaction + pointer */
+#projects-plot path { transition: 300ms; cursor: pointer; fill: var(--color); }
+.legend-item { cursor: pointer; }
+
+/* Selected highlight overrides color */
+.selected { --color: oklch(60% 0.45 0) !important; }   /* pick any distinct color */
+
+
