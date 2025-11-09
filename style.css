@@ -221,3 +221,124 @@ label.color-scheme select { font: inherit; }
 .selected { --color: oklch(60% 0.45 0) !important; }   /* pick any distinct color */
 
 
+/* --- Meta stats summary --- */
+.stats {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .25rem 1rem;
+  max-width: 42rem;
+  margin-block: 1rem 2rem;
+  padding: 1rem;
+  border: 1px solid var(--muted-strong);
+  border-radius: .75rem;
+}
+
+.stats dt {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: .8rem;
+  color: var(--muted-strong);
+}
+
+.stats dd {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+
+.gridlines line {
+  stroke: #888;
+  opacity: 0.2;
+}
+
+.gridlines path {
+  display: none;
+}
+
+/* info list layout used by the tooltip */
+dl.info {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: .25rem .75rem;
+  margin: 0;
+}
+dl.info dt { opacity: .65; }
+dl.info dd { margin: 0; }
+
+/* tooltip placement */
+.tooltip {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  padding: .75rem 1rem;
+  border-radius: .5rem;
+  /* optional cosmetics to match your theme */
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: saturate(180%) blur(6px);
+}
+
+/* hover animation for dots */
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  background: rgba(255, 255, 255, 0.9);
+  color: black;
+  border-radius: 8px;
+  padding: 0.75em 1em;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(6px);
+  display: none; /* hidden by default */
+  z-index: 10;
+}
+
+dl.info {
+  /* existing tooltip styles here */
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+dl.info.tooltip {
+  position: fixed;      /* so clientX/clientY coordinates work */
+  top: 1rem;            /* will be overridden by JS */
+  left: 1rem;           /* will be overridden by JS */
+  pointer-events: none; /* don’t block hover on dots */
+  z-index: 1000;
+
+  /* your visual styles (background, padding, shadow, etc.) */
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+/* Make the brush selection rectangle a little visible */
+.selection {
+  fill-opacity: 0.1;
+  stroke: black;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+}
+
+/* Selected dots stand out */
+circle.selected { fill: #ff6b6b; }
+
+/* (optional) slightly transparent dots by default */
+circle { fill-opacity: 0.7; transition: 200ms; transform-origin: center; transform-box: fill-box; }
+circle:hover { transform: scale(1.5); fill-opacity: 1; }

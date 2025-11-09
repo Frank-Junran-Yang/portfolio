@@ -41,7 +41,8 @@ let pages = [
   { url: 'projects/', title: 'Projects' },
   { url: 'cv.html', title: 'CV' },
   { url: 'contact/', title: 'Contact' },
-  { url: 'https://github.com/Frank-Junran-Yang', title: 'GitHub' }
+  { url: 'https://github.com/Frank-Junran-Yang', title: 'GitHub' },
+  { url: 'meta/', title: 'meta' }
 ];
 
 // 2️⃣ Detect environment to build correct base path

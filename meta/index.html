@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meta - Junran Yang</title>
-    <link rel="stylesheet" href="../style.css">
-</head>
-<body>
-    <nav>
-        <a href="../index.html">Home</a>
-        <a href="../projects/index.html">Projects</a>
-        <a href="../cv.html">CV</a>
-        <a href="../contact/index.html">Contact</a>
-        <a href="index.html" class="current">Meta</a>
-        <a href="https://github.com/Frank-Junran-Yang" target="_blank">GitHub</a>
-    </nav>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meta</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
     <h1>Meta</h1>
     <p>This page includes stats about the code of this website.</p>
-</body>
+
+    <!-- (optional) simple stats list if you want to fill it later -->
+    <div id="stats"></div>
+
+    <h2>Commits by time of day</h2>
+    <div id="chart"></div>
+
+    <!-- Fixed-position tooltip that we show/hide + update on hover -->
+    <dl id="commit-tooltip" class="info tooltip" hidden>
+      <dt>Commit</dt>
+      <dd><a href="" id="commit-link" target="_blank" rel="noopener"></a></dd>
+
+      <dt>Date</dt>
+      <dd id="commit-date"></dd>
+    </dl>
+
+    <!-- Brushing outputs -->
+    <p id="selection-count">No commits selected</p>
+    <dl id="language-breakdown" class="stats"></dl>
+
+    <!-- App code -->
+    <script type="module" src="main.js"></script>
+  </body>
 </html>
