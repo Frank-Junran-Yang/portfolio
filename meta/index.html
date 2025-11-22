@@ -1,35 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meta</title>
-    <link rel="stylesheet" href="../style.css?v=3" />
-  </head>
-  <body>
-    <h1>Meta</h1>
-    <p>This page includes stats about the code of this website.</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meta</title>
+  <link rel="stylesheet" href="../style.css?v=4" />
+</head>
 
-    <!-- (optional) simple stats list if you want to fill it later -->
-    <div id="stats"></div>
+<body>
+  <h1>Meta</h1>
+  <p>This page includes stats about the code of this website.</p>
 
-    <h2>Commits by time of day</h2>
-    <div id="chart"></div>
+  <div id="stats"></div>
 
-    <!-- Fixed-position tooltip that we show/hide + update on hover -->
-    <dl id="commit-tooltip" class="info tooltip" hidden>
-      <dt>Commit</dt>
-      <dd><a href="" id="commit-link" target="_blank" rel="noopener"></a></dd>
+  <label class="time-filter">
+    Show commits until:
+    <input type="range" id="commit-progress" min="0" max="100" value="100" />
+    <time id="commit-time"></time>
+  </label>
 
-      <dt>Date</dt>
-      <dd id="commit-date"></dd>
-    </dl>
+  <!-- ========== STEP 3.1: TWO-COLUMN SCROLLY WRAPPER ========== -->
+  <div id="scrolly-1">
+    
+    <!-- LEFT COLUMN: Story text -->
+    <div id="scatter-story"></div>
 
-    <!-- Brushing outputs -->
-    <p id="selection-count">No commits selected</p>
-    <dl id="language-breakdown" class="stats"></dl>
+    <!-- RIGHT COLUMN: Sticky scatter plot -->
+    <div id="scatter-plot">
+      <h2>Commits by time of day</h2>
+      <div id="chart"></div>
+    </div>
 
-    <!-- App code -->
-    <script type="module" src="main.js?v=3"></script>
-  </body>
+  </div>
+
+  <!-- FILE VISUALIZATION MOVED TO BOTTOM -->
+  <dl id="files"></dl>
+
+  <!-- Tooltip -->
+  <dl id="commit-tooltip" class="info tooltip" hidden>
+    <dt>Commit</dt>
+    <dd><a href="" id="commit-link" target="_blank" rel="noopener"></a></dd>
+
+    <dt>Date</dt>
+    <dd id="commit-date"></dd>
+  </dl>
+
+  <p id="selection-count">No commits selected</p>
+  <dl id="language-breakdown" class="stats"></dl>
+
+  <script type="module" src="main.js?v=4"></script>
+</body>
 </html>
